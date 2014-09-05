@@ -4,8 +4,8 @@
 			$query = $this->db->get("menu");
 			return $query->result();
 		}
-		public function getProduct(){
-			$query = $this->db->get("products");
+		public function getProduct($perPage='',$ofset=''){
+			$query = $this->db->get("products",$perPage,$ofset);
 			return $query->result();
 		}
 	}
