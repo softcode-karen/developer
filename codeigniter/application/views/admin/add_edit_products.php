@@ -368,12 +368,11 @@
                 	<form action="<?=$action?>" method="post" enctype="multipart/form-data">
                        <div class="form-group">
                             <label>Select Product Category</label>
-                            <select class="form-control">
+                            <select class="form-control" name="category">
                                 <?php 
-                                out($category);
                                     foreach ($category as $key => $value) {
                                 ?>
-                                <option><?=$value->title?></option>
+                                <option value="<?=$value->id?>"><?=$value->title?></option>
                                 <?php
                                     }
                                 ?>

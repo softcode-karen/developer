@@ -1,6 +1,6 @@
 <?php
-	class Login_model extends CI_Model{
-		public function getProductToCategory($menu){
+	class Category_model extends CI_Model{
+		public function get_product_to_category($menu){
 			
 		}
 	}
