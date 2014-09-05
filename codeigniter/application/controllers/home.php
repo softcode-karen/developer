@@ -11,7 +11,7 @@ class Home extends CI_Controller {
 
 	  	$perPage = 2;
 
-		$config['base_url'] = 'http://localhost/developer/codeigniter/index.php/home/index';
+		$config['base_url'] = base_url('/index.php/home/index');
 		$config['total_rows'] = '6';
 		$config['per_page'] = $perPage; 
 	 	$config['use_page_numbers'] = TRUE;
