@@ -8,5 +8,8 @@
 			$query = $this->db->get("products",$perPage,$ofset);
 			return $query->result();
 		}
+		public function getCount(){
+			return $this->db->get('products')->num_rows();
+		}
 	}
 ?>

@@ -10,9 +10,9 @@ class Home extends CI_Controller {
 		$this->load->library('pagination');
 
 	  	$perPage = 2;
-
+	  	$count = $this->home_model->getCount();
 		$config['base_url'] = base_url('/index.php/home/index');
-		$config['total_rows'] = '6';
+		$config['total_rows'] = $count;
 		$config['per_page'] = $perPage; 
 	 	$config['use_page_numbers'] = TRUE;
 		// $config['uri_segment'] = 2;
