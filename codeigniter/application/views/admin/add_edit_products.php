@@ -1,3 +1,4 @@
+
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -244,13 +245,13 @@
                             <a href="<?=base_url("index.php/admin/home/menu")?>"><i class="fa fa fa-credit-card"></i> Site Menu</a>
                         </li>
                         <li>
-                            <a href="<?=base_url("index.php/admin/products")?>"><i class="fa fa-shopping-cart fa-fw"></i> Products</a>
+                            <a class="active" href="<?=base_url("index.php/admin/products")?>"><i class="fa fa-shopping-cart fa-fw"></i> Products</a>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="active" href="<?=base_url("index.php/admin/home/flot")?>">Flot Charts</a>
+                                    <a href="<?=base_url("index.php/admin/home/flot")?>">Flot Charts</a>
                                 </li>
                                 <li>
                                     <a href="<?=base_url("index.php/admin/home/morris")?>">Morris.js Charts</a>
@@ -336,110 +337,60 @@
 
         <div id="page-wrapper">
             <div class="row">
+                <!-- .col-lg-12 -->
                 <div class="col-lg-12">
-                    <h1 class="page-header">Flot</h1>
+                    <h1 class="page-header">Add Product</h1>
                 </div>
                 <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Line Chart Example
+                <!-- .col-lg-12 -->
+                <div class="col-lg-5">
+                <?php
+                    if(empty($this->uri->segment("4"))){
+                        $action = base_url("index.php/admin/products/add_edit_products");
+                        $title = "";
+                        $description = "";
+                        $price = "";
+                        $img = "";
+                        $button = "Add Product";
+                    }else{
+                        $action = base_url("index.php/admin/products/add_edit_products/".$this->uri->segment("4"));
+                        $title = $query['0']->title;
+                        $description = $query['0']->description;
+                        $price = $query['0']->price;
+                        $button = "Save";
+                        if(empty($query['0']->img)){
+                        	$img = "";
+                        }else{
+                        	$img = "<img src='".base_url("assets/img/product_img/")."/".$query['0']->img."' alt='".$query['0']->title."' title='".$query['0']->title."' />";
+                        }
+                    }
+                ?>
+                	<form action="<?=$action?>" method="post" enctype="multipart/form-data">
+		                <div class="form-group">
+			                <label>Product title</label>
+			                <input class="form-control" placeholder="Product title" name="title" value="<?=$title?>">
+			            </div>
+		                <div class="form-group">
+			                <label>Product Description</label> 
+			                <textarea class="form-control" rows="3" placeholder="Product Description" name="description"><?=$description?></textarea>
+			            </div>
+		                <label>Product Price</label>
+		                <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-rub"></i>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Product price" name="price" value="<?=$price?>">
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-line-chart"></div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
+		                <div class="form-group">
+			                <label>Product Image</label> 
+			                <input type="file" name="product_img" class="file-inputs">
+			                <?=$img?>
+			            </div>
+			            <button type="submit" class="btn btn-success" name="save"><?=$button?></button>
+			            <button type="reset" class="btn btn-danger">Reset</button>
+		            </form>
+		        </div>
                 <!-- /.col-lg-12 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Pie Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-pie-chart"></div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Multiple Axes Line Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-line-chart-multi"></div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Moving Line Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-line-chart-moving"></div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Bar Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-bar-chart"></div>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Flot Charts Usage
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <p>Flot is a pure JavaScript plotting library for jQuery, with a focus on simple usage, attractive looks, and interactive features. In SB Admin, we are using the most recent version of Flot along with a few plugins to enhance the user experience. The Flot plugins being used are the tooltip plugin for hoverable tooltips, and the resize plugin for fully responsive charts. The documentation for Flot Charts is available on their website, <a target="_blank" href="http://www.flotcharts.org/">http://www.flotcharts.org/</a>.</p>
-                            <a target="_blank" class="btn btn-default btn-lg btn-block" href="http://www.flotcharts.org/">View Flot Charts Documentation</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-6 -->
             </div>
-            <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
 

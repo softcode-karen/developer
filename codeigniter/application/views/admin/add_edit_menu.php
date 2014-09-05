@@ -239,10 +239,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a  href="<?=base_url("index.php/admin/home")?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="<?=base_url("index.php/admin/home")?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a class="active" href="<?=base_url("index.php/admin/home/menu")?>"><i class="fa fa fa-credit-card"></i> Site Menu</a>
+                        </li>
+                        <li>
+                            <a  href="<?=base_url("index.php/admin/products")?>"><i class="fa fa-shopping-cart fa-fw"></i> Products</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>

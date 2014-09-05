@@ -8,6 +8,7 @@ class Home extends CI_Controller {
 
 	public function index(){
 		$data["query"] = $this->home_model->getMenu();
+		$data["products"] = $this->home_model->getProduct();
 		$this->load->template_view("home",$data);
 	}
 }
