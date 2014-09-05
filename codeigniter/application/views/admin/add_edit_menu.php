@@ -1,3 +1,4 @@
+
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -338,22 +339,31 @@
                     <h1 class="page-header">Add Site Menu</h1>
                 </div>
                 <!-- /.col-lg-12 -->
-                <?php
-                    //$title = (isset($query) ?  $query->title:  'asdads');
-                    //echo $title;
-                ?>
                 <!-- .col-lg-12 -->
                 <div class="col-lg-5">
-                	<form action="<?=base_url("index.php/admin/menu/add_edit_menu")?>" method="post">
+                <?php
+                    if(empty($this->uri->segment("4"))){
+                        $action = base_url("index.php/admin/menu/add_edit_menu");
+                        $title = "";
+                        $url = "";
+                        $button = "Add Menu";
+                    }else{
+                        $action = base_url("index.php/admin/menu/add_edit_menu/".$this->uri->segment("4"));
+                        $title = $query['0']->title;
+                        $url = $query['0']->url;
+                        $button = "Save";
+                    }
+                ?>
+                	<form action="<?=$action?>" method="post">
 		                <div class="form-group">
 			                <label>Menu title</label>
-			                <input class="form-control" placeholder="Menu title" name="title" value="">
+			                <input class="form-control" placeholder="Menu title" name="title" value="<?=$title?>">
 			            </div>
 		                <div class="form-group">
 			                <label>Menu seourl</label>
-			                <input class="form-control" placeholder="Menu seourl" name="url">
+			                <input class="form-control" placeholder="Menu seourl" name="url" value="<?=$url?>">
 			            </div>
-			            <button type="submit" class="btn btn-success" name="save">Add menu</button>
+			            <button type="submit" class="btn btn-success" name="save"><?=$button?></button>
 			            <button type="reset" class="btn btn-danger">Reset</button>
 		            </form>
 		        </div>
