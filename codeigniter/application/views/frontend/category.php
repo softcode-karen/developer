@@ -11,5 +11,5 @@
 	<?php
 		}
 	?>
-	<div class="col-lg-12"><?=$pagination;?></div>
+	<div class="col-lg-12"><?//=$pagination;?></div>
 </div>

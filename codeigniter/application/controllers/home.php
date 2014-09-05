@@ -21,9 +21,6 @@ class Home extends CI_Controller {
 		 } else {
 		     $id = $this->uri->segment(3);
 		 }
-		// $config['num_links'] = 4;
-
-
 		$config['full_tag_open'] = "<ul class='pagination'>";
 		$config['full_tag_close'] ="</ul>";
 		$config['num_tag_open'] = '<li>';
@@ -38,7 +35,6 @@ class Home extends CI_Controller {
 		$config['first_tagl_close'] = "</li>";
 		$config['last_tag_open'] = "<li>";
 		$config['last_tagl_close'] = "</li>";
-
 
 		$this->pagination->initialize($config); 
 

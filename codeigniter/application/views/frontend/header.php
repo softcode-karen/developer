@@ -23,9 +23,10 @@
 		<div class="container col-lg-">
 			<div class="header ">
 				<ul class="col-lg-10">
+					<li><a href="<?=base_url("index.php/home")?>" class="btn btn-info">Главная</a></li>
 				<?php
 					foreach ($query as $key => $value) {
-						echo '<li><a href="'.base_url("index.php/category")."/".$value->url.'" class="btn btn-info">'.$value->title.'</a></li>';
+						echo '<li><a href="'.base_url("index.php/category/index")."/".$value->id.'" class="btn btn-info">'.$value->title.'</a></li>';
 					}
 				?>
 				</ul>
