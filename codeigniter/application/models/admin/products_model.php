@@ -20,5 +20,9 @@
 		public function delete_product($id){
 			$this->db->delete('products', array('id' => $id));
 		}
+		public function get_category(){
+			$query = $this->db->get("menu");
+			return $query;
+		}
 	}
 ?>

@@ -366,6 +366,19 @@
                     }
                 ?>
                 	<form action="<?=$action?>" method="post" enctype="multipart/form-data">
+                       <div class="form-group">
+                            <label>Select Product Category</label>
+                            <select class="form-control">
+                                <?php 
+                                out($category);
+                                    foreach ($category as $key => $value) {
+                                ?>
+                                <option><?=$value->title?></option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
+                        </div>
 		                <div class="form-group">
 			                <label>Product title</label>
 			                <input class="form-control" placeholder="Product title" name="title" value="<?=$title?>">
@@ -380,6 +393,7 @@
                             </span>
                             <input type="text" class="form-control" placeholder="Product price" name="price" value="<?=$price?>">
                         </div>
+
 		                <div class="form-group">
 			                <label>Product Image</label> 
 			                <input type="file" name="product_img" class="file-inputs">

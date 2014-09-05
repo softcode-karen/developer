@@ -52,6 +52,7 @@ class Products extends CI_Controller {
 			}
 		}else{
 			$data["query"] = $this->products_model->select_product_data($id);
+			$data["category"] = $this->products_model->get_category();
 			$this->load->admin_view('add_edit_products',$data);
 			if(!empty($this->input->post("title"))){
 				if($this->form_validation->run()){
