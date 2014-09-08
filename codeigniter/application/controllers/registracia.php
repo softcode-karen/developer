@@ -29,6 +29,28 @@ class Registracia extends CI_Controller {
 		}
 		//echo $count;
 	}
+	public function sendEmail($email){		
+		// Email configuration
+		$email_config = Array(
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => '465',
+            'smtp_user' => 'karjan9645@gmail.com',
+            'smtp_pass' => '08281975karjan',
+            'mailtype'  => 'html',
+            'starttls'  => true,
+            'newline'   => "\r\n"
+        );
+
+        $this->load->library('email', $email_config);
+
+        $this->email->from('poxos');
+        $this->email->to($email);
+        $this->email->subject('Invoice');
+        $this->email->message('Test');
+
+        $this->email->send();
+	}
 	public function reg_user(){
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
@@ -85,6 +107,9 @@ class Registracia extends CI_Controller {
 				$this->registracia_model->add_users($data);
 				$newdata = $this->registracia_model->add_users($data);
 				$this->session->set_userdata($newdata);
+
+				$this->sendEmail($email);
+
 				redirect("home");
 			}else{
 				$data["query"] = $this->home_model->getMenu();
