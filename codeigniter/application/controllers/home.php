@@ -43,5 +43,6 @@ class Home extends CI_Controller {
 		$data["query"] = $this->home_model->getMenu();
 		$data["products"] = $this->home_model->getProduct($perPage,$id);
 		$this->load->template_view("home",$data);
+		
 	}
 }
