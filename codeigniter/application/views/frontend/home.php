@@ -29,25 +29,4 @@
 		}
 	?>
 	<div class="col-lg-12"><?=$pagination;?></div>
-	<script type="text/javascript">
-		$(".buy_pr").hover(function(){
-			$(this).stop().animate({"max-width":"100%"},1500,function(){
-				$(this).find(".pr_active").fadeOut("fast",function(){
-					$(this).parent().find(".pr_disamble").fadeIn("fast");
-				})
-			});
-		},function(){
-			$(this).find(".pr_disamble").fadeOut("fast",function(){
-				$(this).parent().find(".pr_active").fadeIn("fast",function(){
-					$(this).parent().stop().animate({"max-width":"25%"},1500);
-				});
-			})
-		});
-		$(".pr_bb").click(function(){
-			var id_product = $(this).attr("id");
-			$(".br_pop").click().delay(1000).queue(function(){
-				$(this).click();
-			});
-		});
-	</script>
 </div>

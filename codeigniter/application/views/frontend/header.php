@@ -13,7 +13,12 @@
 	</head>
 	<body>
 		<?php
-			//out($this->session->userdata("0"));
+			if(empty($this->session->userdata["cart_product"])){
+				$this->session->unset_userdata("cart_product");
+			}
+			// $this->session->unset_userdata("cart_product");
+			// $this->session->unset_userdata("cart_count");
+			// out($this->session->userdata);
 			// $ch = curl_init();
 			// $curlConfig = array(
 			//     CURLOPT_URL            => "http://look.am/",
@@ -39,7 +44,7 @@
 		?>
 		<div class="container col-lg-">
 			<div class="header ">
-				<ul class="col-lg-10">
+				<ul class="col-lg-9">
 					<li><a href="<?=base_url("index.php/home")?>" class="btn btn-info">Главная</a></li>
 				<?php
 					foreach ($query as $key => $value) {
@@ -50,7 +55,10 @@
 				<?php
 					if(empty($this->session->userdata("0"))){
 				?>			
-				<div class="form col-lg-2">
+				<div class="form col-lg-3">
+					<div class="cart_view">
+						<a href="<?=base_url("index.php/cart")?>"><p class="cart_count"><?=(!empty($this->session->userdata["cart_count"]) ? $this->session->userdata["cart_count"] : 0)?></p></a>
+					</div>
 					<p class="btn btn-primary btn-lg login" data-toggle="modal" data-target="#myModal">Войти</p>
 					<p type="submit" class="btn btn-success reg_bt" data-toggle="modal" data-target="#reg">Регистрация</p>
 				</div>
@@ -64,7 +72,10 @@
 						}
 						$logout = base_url("index.php/logout");
 				?>			
-				<div class="form col-lg-2">
+				<div class="form col-lg-3">
+					<div class="cart_view">
+						<a href="<?=base_url("index.php/cart")?>"><p class="cart_count"><?=(!empty($this->session->userdata["cart_count"]) ? $this->session->userdata["cart_count"] : 0)?></p></a>
+					</div>
 					<img src="<?=$img?>" alt="<?=$full_name?>" title="<?=$full_name?>" class="avatar"/>
 					<p><?=$full_name?></p>
 					<a href="<?=$logout?>" >Выход</a>

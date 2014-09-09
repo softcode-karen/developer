@@ -17,6 +17,55 @@
 				<div class="fb-like" data-href="https://www.facebook.com/LiLitHovhannisyanOfficial?fref=nf" data-width="200" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 			</div>
 		</div>
+		<script type="text/javascript">
+			$(".buy_pr").hover(function(){
+				$(this).stop().animate({"max-width":"100%"},1500,function(){
+					$(this).find(".pr_active").fadeOut("fast",function(){
+						$(this).parent().find(".pr_disamble").fadeIn("fast");
+					})
+				});
+			},function(){
+				$(this).find(".pr_disamble").fadeOut("fast",function(){
+					$(this).parent().find(".pr_active").fadeIn("fast",function(){
+						$(this).parent().stop().animate({"max-width":"25%"},1500);
+					});
+				})
+			});
+			$(".pr_bb").click(function(){
+				var id_product = $(this).attr("id");
+				$.ajax({
+					type:"POST",
+					url:"<?=base_url('index.php/cart/add_cart')?>" + "/" + id_product,
+					success: function(num){
+						if(num == 1){
+							var count_vw = parseInt($(".cart_count").html())+1;
+							$(".cart_count").html(count_vw);
+						}else{
+							$(".pr_pop_p").html("Ara 4em jogum qez dzym sayt@ vari tal!!!");
+						}
+						$(".br_pop").click().delay(2500).queue(function(){
+							if($(".bs-example-modal-sm").css("display") !== "none"){
+								$(this).click();
+							}
+						});
+						//console.log(num);
+						$(this).dequeue();
+					}
+				});
+			});
+			$(".delete_products_site").click(function(){
+				var id = $(this).attr("id");
+				$.ajax({
+					type:"POST",
+					url:"<?=base_url('index.php/cart/delete_product')?>" + "/" + id,
+					success: function(){
+                        $("#products_"+id).fadeOut();
+						var count_vw = parseInt($(".cart_count").html())-1;
+						$(".cart_count").html(count_vw);
+					}
+				});
+			});
+		</script>
 	<!-- /This is site Footer -->
 	</div>
 	</body>

@@ -1,75 +1,4 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Online Shop</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="<?=base_url("assets/css/bootstrap.min.css")?>">
-		<link rel="stylesheet" type="text/css" href="<?=base_url("assets/css/bootstrap-responsive.css")?>">
-		<link rel="stylesheet" type="text/css" href="<?=base_url("assets/css/style.css")?>">
-	</head>
-	<body>
-		<?php
-			//out($this->session->userdata("0"));
-			// $ch = curl_init();
-			// $curlConfig = array(
-			//     CURLOPT_URL            => "http://look.am/",
-			//     CURLOPT_POST           => true,
-			//     CURLOPT_RETURNTRANSFER => true,
-			//     CURLOPT_POSTFIELDS     => array(
-			//         'field1' => 'some date',
-			//         'field2' => 'some other data',
-			//     )
-			// );
-			// curl_setopt_array($ch, $curlConfig);
-			// $result = curl_exec($ch);
-			// curl_close($ch);
-			// echo $result;die;
-			if(isset($_GET["error"])){
-		?>
-		<div class="alert alert-danger alert-dismissible" role="alert">
-		  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		  <strong>Неправильный логин или пароль</strong>
-		</div>
-		<?php
-			}
-		?>
-		<div class="container col-lg-">
-			<div class="header ">
-				<ul class="col-lg-10">
-					<li><a href="<?=base_url("index.php/home")?>" class="btn btn-info">Главная</a></li>
-				<?php
-					foreach ($query as $key => $value) {
-						echo '<li><a href="'.base_url("index.php/category/index")."/".$value->id.'" class="btn btn-info">'.$value->title.'</a></li>';
-					}
-				?>
-				</ul>
-				<?php
-					if(empty($this->session->userdata("0"))){
-				?>			
-				<div class="form col-lg-2">
-					<p class="btn btn-primary btn-lg login" data-toggle="modal" data-target="#myModal">Войти</p>
-					<p type="submit" class="btn btn-success reg_bt" data-toggle="modal" data-target="#reg">Регистрация</p>
-				</div>
-				<?php
-					}else{
-						$full_name = $this->session->userdata("0")->name . " " . $this->session->userdata("0")->last_name;
-						if(isset($this->session->userdata("0")->fb_id)){
-							$img = "https://graph.facebook.com/".$this->session->userdata("0")->fb_id."/picture";
-						}else{
-							$img = base_url("assets/img/users_img/".$this->session->userdata("0")->img);
-						}
-						$logout = base_url("index.php/logout");
-				?>			
-				<div class="form col-lg-2">
-					<img src="<?=$img?>" alt="<?=$full_name?>" title="<?=$full_name?>" class="avatar"/>
-					<p><?=$full_name?></p>
-					<a href="<?=$logout?>" >Выход</a>
-				</div>
-				<?php
-					}
-				?>		
-				
+
 				<!-- Login -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
@@ -116,7 +45,7 @@
 				<!-- End Login -->
 
 				<!-- Registracia -->
-				<div class="modal fade in" id="reg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+				<div class="modal fade in" id="regs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -180,80 +109,43 @@
 					</div>
 				</div>
 			<!-- End Registracia -->
-			</div>
 
-<div class="col-lg-">
-	<div class="span3">
-		<img src="<?=base_url("assets/img/product_img/3886m.jpg")?>" class="img-polaroid">
-		<p class="description">Как приучать ребенка к взрослой жизни,
-		 не превращая обучение в нудную процедуру,
-		  а используя для этого игровую деятельность? 
-		  Совместить приятное с полезным достаточно легко, 
-		  если сама игрушка будет носить прикладной характер.
-	 	</p>
-		<p class="price">Цена`1500руб.</p>
-	</div>
-	<div class="span3">
-		<img src="<?=base_url("assets/img/product_img/3886m.jpg")?>" class="img-polaroid">
-		<p class="description">Как приучать ребенка к взрослой жизни,
-		 не превращая обучение в нудную процедуру,
-		  а используя для этого игровую деятельность? 
-		  Совместить приятное с полезным достаточно легко, 
-		  если сама игрушка будет носить прикладной характер.
-	 	</p>
-		<p class="price">Цена`1500руб.</p>
-	</div>
-	<div class="span3">
-		<img src="<?=base_url("assets/img/product_img/3886m.jpg")?>" class="img-polaroid">
-		<p class="description">Как приучать ребенка к взрослой жизни,
-		 не превращая обучение в нудную процедуру,
-		  а используя для этого игровую деятельность? 
-		  Совместить приятное с полезным достаточно легко, 
-		  если сама игрушка будет носить прикладной характер.
-	 	</p>
-		<p class="price">Цена`1500руб.</p>
-	</div>
-	<div class="span3">
-		<img src="<?=base_url("assets/img/product_img/3886m.jpg")?>" class="img-polaroid">
-		<p class="description">Как приучать ребенка к взрослой жизни,
-		 не превращая обучение в нудную процедуру,
-		  а используя для этого игровую деятельность? 
-		  Совместить приятное с полезным достаточно легко, 
-		  если сама игрушка будет носить прикладной характер.
-	 	</p>
-		<p class="price">Цена`1500руб.</p>
-	</div>
-	<div class="span3">
-		<img src="<?=base_url("assets/img/product_img/3886m.jpg")?>" class="img-polaroid">
-		<p class="description">Как приучать ребенка к взрослой жизни,
-		 не превращая обучение в нудную процедуру,
-		  а используя для этого игровую деятельность? 
-		  Совместить приятное с полезным достаточно легко, 
-		  если сама игрушка будет носить прикладной характер.
-	 	</p>
-		<p class="price">Цена`1500руб.</p>
-	</div>
-	<div class="span3">
-		<img src="<?=base_url("assets/img/product_img/3886m.jpg")?>" class="img-polaroid">
-		<p class="description">Как приучать ребенка к взрослой жизни,
-		 не превращая обучение в нудную процедуру,
-		  а используя для этого игровую деятельность? 
-		  Совместить приятное с полезным достаточно легко, 
-		  если сама игрушка будет носить прикладной характер.
-	 	</p>
-		<p class="price">Цена`1500руб.</p>
-	</div>
+<!-- Small modal -->
+<button class="btn btn-primary br_pop" data-toggle="modal" data-target=".bs-example-modal-sm" style="display:none;"></button>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <p class="pr_pop_p">Товар добавлен в вашу корзину</p> 
+    </div>
+  </div>
 </div>
+<!-- /Small modal -->
+<div class="col-lg-">
+	<?php 
+		foreach ($products as $key => $value) {
+	?>
+	<div class="span3">
+		<div class="pr_bb" id="<?=$value->id?>">
+			<span class="buy_pr col-lg-12">
+				<p class="pr_disamble">Купить`<?=$value->title?> <i class="fa fa-rub"></i><?=$value->price?></p>
+				<p class="pr_active"><i class="fa fa-rub"></i><?=$value->price?></p>
+			</span>
 		</div>
-		<script type="text/javascript" src="<?=base_url("assets/js/jquery-1.11.0.js")?>"></script>
-		<script type="text/javascript" src="<?=base_url("assets/js/bootstrap.min.js")?>"></script>
-		<script type="text/javascript">
+		<img src="<?=base_url("assets/img/product_img")."/".$value->img?>" class="img-polaroid" alt="<?=$value->title?>" title="<?=$value->title?>">
+		<p class="description"><?=$value->description?></p>
+		<p class="price">Цена`<?=$value->price?>руб.</p>
+	</div>
+	<?php
+		}
+	?>
+	<div class="col-lg-12"><?=$pagination;?></div>
+	<div class="modal-backdrop fade in"></div>
+	<script type="text/javascript">
 		$(".close").click(function(){
-			$("#reg").fadeOut("fast",function(){
+			$("#regs").fadeOut("fast",function(){
 				$(".modal-backdrop").fadeOut();
 			});	
 		})
-		</script>
-		<div class="modal-backdrop fade in"></div>
-	</body>
-</html>
+	</script>
+</div>
