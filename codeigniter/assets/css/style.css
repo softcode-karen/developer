@@ -75,6 +75,13 @@ img{width: 100%;}
 	cursor:pointer;
 }
 .buy_pr > P{margin: 0px !important;}
+.pr_pop_p{
+	padding: 10px 0px;
+	text-align: center;
+	color: #5E3131;
+	margin: 0px;
+	cursor: default;
+}
 .pr_disamble{display:none;}
 .pr_active{display:block;}
 .avatar{

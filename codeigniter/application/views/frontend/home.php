@@ -1,4 +1,15 @@
 
+<!-- Small modal -->
+<button class="btn btn-primary br_pop" data-toggle="modal" data-target=".bs-example-modal-sm" style="display:none;"></button>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <p class="pr_pop_p">Товар добавлен в вашу корзину</p> 
+    </div>
+  </div>
+</div>
+<!-- /Small modal -->
 <div class="col-lg-">
 	<?php 
 		foreach ($products as $key => $value) {
@@ -34,7 +45,9 @@
 		});
 		$(".pr_bb").click(function(){
 			var id_product = $(this).attr("id");
-			alert("Buy product`"+id_product);
+			$(".br_pop").click().delay(1000).queue(function(){
+				$(this).click();
+			});
 		});
 	</script>
 </div>
