@@ -355,6 +355,7 @@
                     }else{
                         $action = base_url("index.php/admin/products/add_edit_products/".$this->uri->segment("4"));
                         $title = $query['0']->title;
+                        $category_fr = $query['0']->category;
                         $description = $query['0']->description;
                         $price = $query['0']->price;
                         $button = "Save";
@@ -371,9 +372,15 @@
                             <select class="form-control" name="category">
                                 <?php 
                                     foreach ($category as $key => $value) {
+                                        if($category_fr == $value->id){
+                                ?>
+                                <option value="<?=$value->id?>" selected><?=$value->title?></option>
+                                <?php
+                                        }else{
                                 ?>
                                 <option value="<?=$value->id?>"><?=$value->title?></option>
                                 <?php
+                                        }
                                     }
                                 ?>
                             </select>
