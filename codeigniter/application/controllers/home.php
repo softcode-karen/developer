@@ -15,13 +15,11 @@ class Home extends CI_Controller {
 		$config['total_rows'] = $count;
 		$config['per_page'] = $perPage; 
 	 	$config['use_page_numbers'] = TRUE;
-		// $config['uri_segment'] = 2;
 		if ($this->uri->segment(3) > 0) {
 		     $id = $this->uri->segment(3) * $perPage - $perPage;
 		 } else {
 		     $id = $this->uri->segment(3);
 		 }
-		// $config['num_links'] = 4;
 
 
 		$config['full_tag_open'] = "<ul class='pagination'>";
