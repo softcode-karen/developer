@@ -7,6 +7,9 @@
 		<link rel="stylesheet" type="text/css" href="<?=base_url("assets/css/bootstrap.min.css")?>">
 		<link rel="stylesheet" type="text/css" href="<?=base_url("assets/css/bootstrap-responsive.css")?>">
 		<link rel="stylesheet" type="text/css" href="<?=base_url("assets/css/style.css")?>">
+	    <link href="<?=base_url("assets/font-awesome-4.1.0/css/font-awesome.min.css")?>" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="<?=base_url("assets/js/jquery-1.11.0.js")?>"></script>
+		<script type="text/javascript" src="<?=base_url("assets/js/bootstrap.min.js")?>"></script>
 	</head>
 	<body>
 		<?php
