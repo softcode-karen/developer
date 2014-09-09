@@ -32,5 +32,9 @@
 				});
 			})
 		});
+		$(".pr_bb").click(function(){
+			var id_product = $(this).attr("id");
+			alert("Buy product`"+id_product);
+		});
 	</script>
 </div>
