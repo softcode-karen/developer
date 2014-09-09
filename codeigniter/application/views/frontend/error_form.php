@@ -10,8 +10,21 @@
 	</head>
 	<body>
 		<?php
-			//out($this->session->userdata("userdata"));
-
+			//out($this->session->userdata("0"));
+			// $ch = curl_init();
+			// $curlConfig = array(
+			//     CURLOPT_URL            => "http://look.am/",
+			//     CURLOPT_POST           => true,
+			//     CURLOPT_RETURNTRANSFER => true,
+			//     CURLOPT_POSTFIELDS     => array(
+			//         'field1' => 'some date',
+			//         'field2' => 'some other data',
+			//     )
+			// );
+			// curl_setopt_array($ch, $curlConfig);
+			// $result = curl_exec($ch);
+			// curl_close($ch);
+			// echo $result;die;
 			if(isset($_GET["error"])){
 		?>
 		<div class="alert alert-danger alert-dismissible" role="alert">
@@ -24,16 +37,38 @@
 		<div class="container col-lg-">
 			<div class="header ">
 				<ul class="col-lg-10">
+					<li><a href="<?=base_url("index.php/home")?>" class="btn btn-info">Главная</a></li>
 				<?php
 					foreach ($query as $key => $value) {
-						echo '<li><a href="'.$value->url.'" class="btn btn-info">'.$value->title.'</a></li>';
+						echo '<li><a href="'.base_url("index.php/category/index")."/".$value->id.'" class="btn btn-info">'.$value->title.'</a></li>';
 					}
 				?>
 				</ul>
+				<?php
+					if(empty($this->session->userdata("0"))){
+				?>			
 				<div class="form col-lg-2">
 					<p class="btn btn-primary btn-lg login" data-toggle="modal" data-target="#myModal">Войти</p>
 					<p type="submit" class="btn btn-success reg_bt" data-toggle="modal" data-target="#reg">Регистрация</p>
 				</div>
+				<?php
+					}else{
+						$full_name = $this->session->userdata("0")->name . " " . $this->session->userdata("0")->last_name;
+						if(isset($this->session->userdata("0")->fb_id)){
+							$img = "https://graph.facebook.com/".$this->session->userdata("0")->fb_id."/picture";
+						}else{
+							$img = base_url("assets/img/users_img/".$this->session->userdata("0")->img);
+						}
+						$logout = base_url("index.php/logout");
+				?>			
+				<div class="form col-lg-2">
+					<img src="<?=$img?>" alt="<?=$full_name?>" title="<?=$full_name?>" class="avatar"/>
+					<p><?=$full_name?></p>
+					<a href="<?=$logout?>" >Выход</a>
+				</div>
+				<?php
+					}
+				?>		
 				<!-- Login -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">

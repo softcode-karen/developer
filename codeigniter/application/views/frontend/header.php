@@ -7,10 +7,27 @@
 		<link rel="stylesheet" type="text/css" href="<?=base_url("assets/css/bootstrap.min.css")?>">
 		<link rel="stylesheet" type="text/css" href="<?=base_url("assets/css/bootstrap-responsive.css")?>">
 		<link rel="stylesheet" type="text/css" href="<?=base_url("assets/css/style.css")?>">
+	    <link href="<?=base_url("assets/font-awesome-4.1.0/css/font-awesome.min.css")?>" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="<?=base_url("assets/js/jquery-1.11.0.js")?>"></script>
+		<script type="text/javascript" src="<?=base_url("assets/js/bootstrap.min.js")?>"></script>
 	</head>
 	<body>
 		<?php
 			//out($this->session->userdata("0"));
+			// $ch = curl_init();
+			// $curlConfig = array(
+			//     CURLOPT_URL            => "http://look.am/",
+			//     CURLOPT_POST           => true,
+			//     CURLOPT_RETURNTRANSFER => true,
+			//     CURLOPT_POSTFIELDS     => array(
+			//         'field1' => 'some date',
+			//         'field2' => 'some other data',
+			//     )
+			// );
+			// curl_setopt_array($ch, $curlConfig);
+			// $result = curl_exec($ch);
+			// curl_close($ch);
+			// echo $result;die;
 			if(isset($_GET["error"])){
 		?>
 		<div class="alert alert-danger alert-dismissible" role="alert">
@@ -23,9 +40,10 @@
 		<div class="container col-lg-">
 			<div class="header ">
 				<ul class="col-lg-10">
+					<li><a href="<?=base_url("index.php/home")?>" class="btn btn-info">Главная</a></li>
 				<?php
 					foreach ($query as $key => $value) {
-						echo '<li><a href="'.base_url("index.php/category")."/".$value->url.'" class="btn btn-info">'.$value->title.'</a></li>';
+						echo '<li><a href="'.base_url("index.php/category/index")."/".$value->id.'" class="btn btn-info">'.$value->title.'</a></li>';
 					}
 				?>
 				</ul>
@@ -39,7 +57,11 @@
 				<?php
 					}else{
 						$full_name = $this->session->userdata("0")->name . " " . $this->session->userdata("0")->last_name;
-						$img = base_url("assets/img/users_img/".$this->session->userdata("0")->img);
+						if(isset($this->session->userdata("0")->fb_id)){
+							$img = "https://graph.facebook.com/".$this->session->userdata("0")->fb_id."/picture";
+						}else{
+							$img = base_url("assets/img/users_img/".$this->session->userdata("0")->img);
+						}
 						$logout = base_url("index.php/logout");
 				?>			
 				<div class="form col-lg-2">
@@ -84,7 +106,65 @@
 								  	<div class="modal-footer">
 									  <div class="form_button">
 									    <div class="col-sm-offset-2 ">
-									      <button type="submit" class="btn btn-success">Войти</button>
+											<button type="submit" class="btn btn-success ">Войти</button>
+											<a onclick="javascript:facebookLogin();" class="fba"><img src="<?=base_url("assets/img/url.jpg")?>" alt="" class="fb"></a>
+											<script type="text/javascript">
+											    
+											    
+											window.fbAsyncInit = function() {
+											    FB.init({
+											        appId: '928760497152159', // FB API LOOK.AM 333007573513911 // localhost/snzl 254205118108191
+											        status: true,
+											        cookie: true,
+											        xfbml: true,
+											        oauth: true
+											    });
+											};
+
+											function facebookLogin() {
+											    FB.login(function(response) {
+											        FB.api('me',
+											            function (response) {
+											                var id = response.id;
+											                var fname = response.first_name;
+											                var lname = response.last_name;
+											                var email = response.email;
+											                $.ajax({
+											                    type:'POST',
+											                    url:"<?=base_url('index.php/login/facebook_login')?>",
+											                    data:{fbId:id,fname:fname,lname:lname,email:email},
+											                    success: function(d){
+											                    	console.log(d);
+										                           	window.location.href ='http://localhost/developer/codeigniter/';
+											                    }
+											                });
+											            });
+											    },
+											    {
+											        scope: 'email,user_checkins'
+											    });
+											}
+
+											(function(d) {
+											    var js,
+											        id = 'facebook-jssdk';
+											    if (d.getElementById(id)) {
+											        return;
+											    }
+											    js = d.createElement('script');
+											    js.id = id;
+											    js.async = true;
+											    js.src = "//connect.facebook.net/en_US/all.js";
+											    d.getElementsByTagName('head')[0].appendChild(js);
+											} (document));
+
+											function isValidEmail(email){
+											    re = /^([a-z0-9_\-]+\.)*[a-z0-9_\-]+@([a-z0-9][a-z0-9\-]*[a-z0-9]\.)+[a-z]{2,4}$/i;
+											    return re.test(email);
+											}
+
+
+											</script>
 									    </div>
 									  </div>
 									</div>

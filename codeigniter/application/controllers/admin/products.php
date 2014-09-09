@@ -16,14 +16,16 @@ class Products extends CI_Controller {
 			$title = $this->input->post("title");
 			$description = $this->input->post("description");
 			$price = $this->input->post("price");
+			$category = $this->input->post("category");
 			$date = date("Y-m-d H:i:s");
 
 			$this->form_validation->set_rules("title","Title","required|min_length[3]|max_length[50]");
-			$this->form_validation->set_rules("description","Descripton","required|min_length[20]");
+			$this->form_validation->set_rules("description","Descripton","required|min_length[10]");
 			$this->form_validation->set_rules("price","Price","required|min_length[3]|max_length[25]");
 		}
 		if(empty($id)){
-			$this->load->admin_view('add_edit_products');
+			$data["category"] = $this->products_model->get_category();
+			$this->load->admin_view('add_edit_products',$data);
 			if(!empty($this->input->post("title"))){
 				if($this->form_validation->run()){
 					$config['upload_path'] = "./assets/img/product_img/";
@@ -44,7 +46,8 @@ class Products extends CI_Controller {
 						"description" => $description,
 						"price" => $price,
 						"img" => $img_name,
-						"date" => $date
+						"date" => $date,
+						"category" => $category
 					);
 					$this->products_model->insert_product($data);
 					redirect("admin/products/");
@@ -74,14 +77,16 @@ class Products extends CI_Controller {
 							"description" => $description,
 							"price" => $price,
 							"img" => $img_name,
-							"date" => $date
+							"date" => $date,
+							"category" => $category
 						);
 					}else{
 						$data = array(
 							"title" => $title,
 							"description" => $description,
 							"price" => $price,
-							"date" => $date
+							"date" => $date,
+							"category" => $category
 						);
 					}
 					$this->products_model->update_product($id,$data);
