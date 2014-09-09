@@ -2,7 +2,6 @@
 	margin:0px;
 	padding:0px;
 }
-p{margin:0px !important;}
 .nopadding_margin{
 	margin:0px;
 	padding:0px;
@@ -75,6 +74,7 @@ img{width: 100%;}
 	max-width: 25%;
 	cursor:pointer;
 }
+.buy_pr > P{margin: 0px !important;}
 .pr_disamble{display:none;}
 .pr_active{display:block;}
 .avatar{
