@@ -99,6 +99,7 @@ img{width: 100%;}
 	margin-top: 5px;
 	margin-left: 20px;
 }
+.lg_fr > p{margin:0px;}
 .cart_count{
 	padding: 2px 10px;
 	color: #fff;
@@ -108,8 +109,35 @@ img{width: 100%;}
 	float: left;
 	margin-left: 15px;
 }
+.obsh_pr{
+	border: 1px dashed #CECECE;
+	margin-top: 10px;
+	padding: 20px 0px;
+	text-align: center;
+}
+.sted_tw{
+	float:left;
+	border-top: 1px dashed #CECECE;
+	padding:10px 0px;
+}
+.sted_tw > a{
+	float:right;
+	width: 100%;
+}
 .footer{
 	background-color: #00A7E5;
 	min-height:200px;
 }
 .footer > .col-lg-5 {padding:7px 4px 0px 4px;}
+.profile_sb li{
+	list-style-type: none;
+	background-color: #00ADED;
+	margin: 2px 0px;
+	padding: 2px 0px;
+	cursor:pointer;
+}
+.profile_sb li a{
+	color: #fff;
+	padding: 0px 0px 0px 10px;
+	text-decoration: none;
+}

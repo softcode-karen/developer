@@ -53,12 +53,18 @@
 					}
 				});
 			});
+			$(".pop_error").click(function(){
+				$(".login").click();
+				$(".form-group .error_cart label").html("<p class='error'>*Пожалуйста войдите чтобы продолжить</p>");
+				
+			});
 			$(".delete_products_site").click(function(){
 				var id = $(this).attr("id");
 				$.ajax({
 					type:"POST",
 					url:"<?=base_url('index.php/cart/delete_product')?>" + "/" + id,
-					success: function(){
+					success: function(a){
+						alert(a);
                         $("#products_"+id).fadeOut();
 						var count_vw = parseInt($(".cart_count").html())-1;
 						$(".cart_count").html(count_vw);

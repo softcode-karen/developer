@@ -18,7 +18,7 @@
 			}
 			// $this->session->unset_userdata("cart_product");
 			// $this->session->unset_userdata("cart_count");
-			// out($this->session->userdata);
+			// out($this->session->userdata["user_data"]);
 			// $ch = curl_init();
 			// $curlConfig = array(
 			//     CURLOPT_URL            => "http://look.am/",
@@ -72,12 +72,13 @@
 						}
 						$logout = base_url("index.php/logout");
 				?>			
-				<div class="form col-lg-3">
+				<div class="form col-lg-3 lg_fr">
 					<div class="cart_view">
 						<a href="<?=base_url("index.php/cart")?>"><p class="cart_count"><?=(!empty($this->session->userdata["cart_count"]) ? $this->session->userdata["cart_count"] : 0)?></p></a>
 					</div>
 					<img src="<?=$img?>" alt="<?=$full_name?>" title="<?=$full_name?>" class="avatar"/>
 					<p><?=$full_name?></p>
+					<a href="<?=base_url("index.php/edit_profile")?>" >Мой профиль</a>
 					<a href="<?=$logout?>" >Выход</a>
 				</div>
 				<?php
@@ -110,6 +111,10 @@
 								      <div class="checkbox">
 								        <label>
 								          <input type="checkbox"> Запомнить
+								        </label>
+								      </div>
+								      <div class="error_cart">
+								        <label>
 								        </label>
 								      </div>
 								    </div>
